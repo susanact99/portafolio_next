@@ -225,24 +225,24 @@ export default function Home() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               <ProjectCard
                 title="Tienda Online"
-                description="Proyecto e-commerce con carrito de compra"
+                description="Plataforma de comercio electrónico con carrito de compras, pagos integrados y panel de administración completo."
                 image={Tienda.src}
-                tags={["React", "Javascript", "MVC"]}
-                link="https://proyecto1.ejemplo.com"
+                tags={["React", "Javascript"]}
+                link="https://susanact99.github.io/e-commerce/"
               />
               <ProjectCard
                 title="Proyecto de bines raíces"
-                description="pagina de inmobiliaria"
+                description="Aplicación web para la gestión de propiedades inmobiliarias."
                 image={Bienes.src}
-                tags={["React", "Node.js", "MongoDB", "SEO APIs"]}
-                link="https://proyecto2.ejemplo.com"
+                tags={["Node.js", "Express", "MySQL", "Tailwindcss"]}
+                link="https://github.com/susanact99/bienes-raices"
               />
               <ProjectCard
                 title="Tic tac toe"
                 description="Juego clasico de tic tac toe"
                 image={TTT.src}
                 tags={["HTML", "JavaScript", "CSS"]}
-                link="https://proyecto3.ejemplo.com"
+                link="https://susanact99.github.io/Tic-tac-toe/"
               />
             </div>
             <div className="text-center mt-12">
@@ -396,10 +396,15 @@ export default function Home() {
               <p className="text-muted-foreground">
                 © {new Date().getFullYear()} SusanaDev. Todos los derechos reservados.
               </p>
-              <Button variant="outline" size="sm" className="professional-outline bg-transparent">
-                <Download className="h-4 w-4 mr-2" />
-                Descargar CV
-              </Button>
+              <a
+                href="/portafolio_next/CV Developer Susana Calzadilla.pdf"
+                download="CV Developer Susana Calzadilla.pdf"
+              >
+                <Button variant="outline" size="sm" className="professional-outline bg-transparent">
+                  <Download className="h-4 w-4 mr-2" />
+                  Descargar CV
+                </Button>
+              </a>
             </div>
             <div className="flex gap-4">
               <Link href="https://github.com/susanact99" target="_blank" rel="noopener noreferrer">
