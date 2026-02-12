@@ -12,6 +12,7 @@ import GlowingCard from "@/components/glowing-card"
 import EducationCard from "@/components/education-card"
 import InteractiveBackground from "@/components/interactive-background"
 import Perfil from "/public/Avatar.jpg"
+import Tienda from "@/public/tienda.jpg"
 
 export default function Home() {
   return (
@@ -223,7 +224,7 @@ export default function Home() {
               <ProjectCard
                 title="Tienda Online"
                 description="Proyecto e-commerce con carrito de compra"
-                image="/tienda.jpg"
+                image={Tienda}
                 tags={["React", "Javascript", "MVC"]}
                 link="https://proyecto1.ejemplo.com"
               />
