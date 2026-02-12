@@ -12,7 +12,9 @@ import GlowingCard from "@/components/glowing-card"
 import EducationCard from "@/components/education-card"
 import InteractiveBackground from "@/components/interactive-background"
 import Perfil from "/public/Avatar.jpg"
-import Tienda from "@/public/tienda.jpg"
+import Tienda from "/public/tienda.jpg"
+import Bienes from "/public/bienesR.jpg"
+import TTT from "/public/ttt.jpg"
 
 export default function Home() {
   return (
@@ -224,21 +226,21 @@ export default function Home() {
               <ProjectCard
                 title="Tienda Online"
                 description="Proyecto e-commerce con carrito de compra"
-                image={Tienda}
+                image={Tienda.src}
                 tags={["React", "Javascript", "MVC"]}
                 link="https://proyecto1.ejemplo.com"
               />
               <ProjectCard
                 title="Proyecto de bines raíces"
                 description="pagina de inmobiliaria"
-                image="bienesR.JPG"
+                image={Bienes.src}
                 tags={["React", "Node.js", "MongoDB", "SEO APIs"]}
                 link="https://proyecto2.ejemplo.com"
               />
               <ProjectCard
                 title="Tic tac toe"
                 description="Juego clasico de tic tac toe"
-                image="/ttt.jpg"
+                image={TTT.src}
                 tags={["HTML", "JavaScript", "CSS"]}
                 link="https://proyecto3.ejemplo.com"
               />
