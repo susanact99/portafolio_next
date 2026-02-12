@@ -398,7 +398,7 @@ export default function Home() {
               </p>
               <a
                 href="/portafolio_next/CV Developer Susana Calzadilla.pdf"
-                download="public/CV Developer Susana Calzadilla.pdf
+                download="CV Developer Susana Calzadilla.pdf"
               >
                 <Button variant="outline" size="sm" className="professional-outline bg-transparent">
                   <Download className="h-4 w-4 mr-2" />
