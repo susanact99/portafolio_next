@@ -11,6 +11,7 @@ import AnimatedSection from "@/components/animated-section"
 import GlowingCard from "@/components/glowing-card"
 import EducationCard from "@/components/education-card"
 import InteractiveBackground from "@/components/interactive-background"
+import Perfil from "/public/Avatar.jpg"
 
 export default function Home() {
   return (
@@ -84,7 +85,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl opacity-30 animate-glow"></div>
                 <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-2 border-primary/30 glass-effect">
                   <Image
-                    src="/Avatar.jpg"
+                    src={Perfil}
                     alt="Foto de perfil de Susana"
                     fill
                     className="object-cover"
