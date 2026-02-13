@@ -1,42 +1,80 @@
 "use client"
 
 import type React from "react"
-
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useToast } from "@/hooks/use-toast"
 import { Send } from "lucide-react"
+import emailjs from 'emailjs-com'
+import Swal from 'sweetalert2'
 
 export default function ContactForm() {
   const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const formRef = useRef<HTMLFormElement>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
 
-    // Simulación de envío de formulario
-    setTimeout(() => {
-      toast({
-        title: "¡Mensaje enviado! ✨",
-        description: "Gracias por contactarme. Te responderé pronto.",
+    const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!
+    const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!
+    const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+
+    if (!formRef.current) return
+
+    emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, formRef.current, PUBLIC_KEY)
+      .then((result) => {
+        // Notificación de éxito con SweetAlert2 (tu lógica original)
+        Swal.fire({
+          title: '¡Message delivered!',
+          text: 'Your message has been delivered successfully',
+          icon: 'success',
+          confirmButtonText: 'Accept',
+          timer: 3000,
+          showConfirmButton: true,
+          background: 'rgb(5, 0, 8)',
+          color: '#fff',
+          toast: true,
+          position: 'top-end'
+        })
+
+        // Notificación extra con el sistema de Toast de Shadcn
+        toast({
+          title: "¡Mensaje enviado! ",
+          description: "Gracias por contactarme. Te responderé pronto.",
+        })
+
+        setIsSubmitting(false)
+        formRef.current?.reset() // Limpiar formulario
+      }, (error) => {
+        console.error(error.text)
+        setIsSubmitting(false)
+        
+        toast({
+          variant: "destructive",
+          title: "Error al enviar",
+          description: "No se pudo enviar el mensaje. Inténtalo de nuevo.",
+        })
       })
-      setIsSubmitting(false)
-      // Reset form
-      e.currentTarget.reset()
-    }, 1500)
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <Input placeholder="Nombre" required className="glass-effect border-border/50 focus:border-primary" />
+          <Input 
+            name="from_name" 
+            placeholder="Nombre" 
+            required 
+            className="glass-effect border-border/50 focus:border-primary" 
+          />
         </div>
         <div>
           <Input
+            name="reply_to" 
             type="email"
             placeholder="Email"
             required
@@ -45,10 +83,16 @@ export default function ContactForm() {
         </div>
       </div>
       <div>
-        <Input placeholder="Asunto" required className="glass-effect border-border/50 focus:border-primary" />
+        <Input 
+          name="subject" 
+          placeholder="Asunto" 
+          required 
+          className="glass-effect border-border/50 focus:border-primary" 
+        />
       </div>
       <div>
         <Textarea
+          name="message" 
           placeholder="Cuéntame sobre tu proyecto..."
           rows={5}
           required
